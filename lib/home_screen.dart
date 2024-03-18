@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locks/list_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(32),
+            padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
             child: TextField(
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
@@ -53,18 +54,15 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                Container(
-                  height: 56,
-                  child: Text('Item 1'),
-                ),
-                Container(
-                  height: 56,
-                  child: Text('Item 2'),
-                ),
-                Container(
-                  height: 56,
-                  child: Text('Item 3'),
-                ),
+                ListItem(
+                    title: 'Lock Voltage',
+                    leftParam: '12V',
+                    rightParam: 'No lock'),
+                ListItem(
+                    title: 'Lock Release Time',
+                    leftParam: '0.5s',
+                    rightParam: '120s'),
+                ListItem(title: 'Lock Angle', leftParam: '90', rightParam: ''),
               ],
             ),
           )
