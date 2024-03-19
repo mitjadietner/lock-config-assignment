@@ -71,26 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (lockData == null) return const CircularProgressIndicator();
                 print(lockData.toString());
                 return ListView.builder(
-                  itemBuilder: (context, index) => ListItem(
-                      item: lockData[index]
-                      /*title: lockData[index].runtimeType == LockArray
-                          ? (lockData[index] as LockArray).title
-                          : (lockData[index] as LockRange).title,
-                      leftParam: lockData[index].runtimeType == LockArray
-                          ? (lockData[index] as LockArray).lockDefault
-                          : (lockData[index] as LockRange)
-                              .lockDefault
-                              .toString(),
-                      rightParam: lockData[index].runtimeType == LockArray
-                          ? (lockData[index] as LockArray).common == true
-                              ? ""
-                              : (lockData[index] as LockArray).lockDefault
-                          : (lockData[index] as LockRange).common == true
-                              ? ""
-                              : (lockData[index] as LockRange)
-                                  .lockDefault
-                                  .toString()*/
-                      ),
+                  itemBuilder: (context, index) =>
+                      ListItem(item: lockData[index]),
                   itemCount: lockData.length,
                 );
               },
