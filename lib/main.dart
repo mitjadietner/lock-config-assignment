@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:locks/home_screen.dart';
+import 'package:locks/providers/lock_provider.dart';
+import 'package:locks/ui/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LockProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

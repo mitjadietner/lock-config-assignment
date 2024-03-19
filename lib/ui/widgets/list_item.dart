@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:locks/edit_screen.dart';
+import 'package:locks/model/lock_model.dart';
+import 'package:locks/ui/screens/edit_screen.dart';
 
 class ListItem extends StatelessWidget {
-  final String title;
-  final String leftParam;
-  final String rightParam;
-  const ListItem(
-      {super.key,
-      required this.title,
-      required this.leftParam,
-      required this.rightParam});
+  final LockItem item;
+  const ListItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +13,7 @@ class ListItem extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EditScreen(title, 'This is a description'),
+              builder: (context) => EditScreen(item),
             ));
       },
       child: SizedBox(
@@ -38,7 +33,9 @@ class ListItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: Text(title),
+                  child: Text(item.type == 1
+                      ? item.arrayData!.title
+                      : item.rangeData!.title),
                 ),
                 const Spacer(),
                 Padding(
@@ -47,13 +44,22 @@ class ListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        leftParam,
+                        item.type == 1
+                            ? item.arrayData!.lockDefault
+                            : item.rangeData!.lockDefault.toString(),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      if (rightParam.isNotEmpty) const Spacer(),
-                      if (rightParam.isNotEmpty)
+                      if (item.type == 1
+                          ? item.arrayData!.common == null
+                          : item.rangeData!.common == null)
+                        const Spacer(),
+                      if (item.type == 1
+                          ? item.arrayData!.common == null
+                          : item.rangeData!.common == null)
                         Text(
-                          rightParam,
+                          item.type == 1
+                              ? item.arrayData!.lockDefault
+                              : item.rangeData!.lockDefault.toString(),
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                     ],

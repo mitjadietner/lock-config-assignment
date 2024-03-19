@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:locks/angle_slider.dart';
-import 'package:locks/edit_dropdown.dart';
-import 'package:locks/radio_list.dart';
-import 'package:locks/time_input.dart';
+import 'package:locks/ui/widgets/angle_slider.dart';
+import 'package:locks/ui/widgets/edit_dropdown.dart';
+import 'package:locks/ui/widgets/radio_list.dart';
+import 'package:locks/ui/widgets/time_input.dart';
 
 class EditContainer extends StatelessWidget {
   final String doorType;
