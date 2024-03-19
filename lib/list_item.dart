@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locks/edit_screen.dart';
 
 class ListItem extends StatelessWidget {
   final String title;
@@ -13,7 +14,13 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditScreen(title, 'This is a description'),
+            ));
+      },
       child: SizedBox(
         height: 72,
         child: Stack(
