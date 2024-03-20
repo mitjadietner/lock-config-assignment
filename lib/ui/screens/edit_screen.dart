@@ -32,18 +32,19 @@ class EditScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(16, 4, 16, 32),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Text("This is a description"),
+                    child: Text("This is a short description of a setting."),
                   ),
                 ),
-                EditContainer('Primary', '90'),
-                Padding(
-                  padding: EdgeInsets.only(top: 16),
-                  child: EditContainer('Secondary', 'No Lock'),
-                ),
+                EditContainer('Primary', item),
+                if (item.secondary.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: EditContainer('Secondary', item),
+                  ),
               ],
             ),
           ),

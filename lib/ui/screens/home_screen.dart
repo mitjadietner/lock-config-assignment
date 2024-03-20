@@ -69,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, provider, child) {
                 var lockData = provider.dataList;
                 if (lockData == null) return const CircularProgressIndicator();
-                print(lockData.toString());
                 return ListView.builder(
                   itemBuilder: (context, index) =>
                       ListItem(item: lockData[index]),

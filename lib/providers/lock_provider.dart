@@ -21,6 +21,7 @@ class LockProvider with ChangeNotifier {
             : data.lockVoltage.common == true
                 ? ""
                 : data.lockVoltage.lockDefault,
+        data.lockVoltage.lockDefault,
         data.lockVoltage,
         null,
       ),
@@ -33,6 +34,7 @@ class LockProvider with ChangeNotifier {
             : data.lockType.common == true
                 ? ""
                 : data.lockType.lockDefault,
+        data.lockType.lockDefault,
         data.lockType,
         null,
       ),
@@ -45,6 +47,7 @@ class LockProvider with ChangeNotifier {
             : data.lockKick.common == true
                 ? ""
                 : data.lockKick.lockDefault,
+        data.lockKick.lockDefault,
         data.lockKick,
         null,
       ),
@@ -57,6 +60,7 @@ class LockProvider with ChangeNotifier {
             : data.lockRelease.common == true
                 ? ""
                 : data.lockRelease.lockDefault,
+        data.lockRelease.lockDefault,
         data.lockRelease,
         null,
       ),
@@ -69,6 +73,7 @@ class LockProvider with ChangeNotifier {
             : data.lockReleaseTime.common == true
                 ? ""
                 : data.lockReleaseTime.lockDefault.toString(),
+        data.lockReleaseTime.lockDefault.toString(),
         null,
         data.lockReleaseTime,
       ),
@@ -81,6 +86,7 @@ class LockProvider with ChangeNotifier {
             : data.lockAngle.common == true
                 ? ""
                 : data.lockAngle.lockDefault.toString(),
+        data.lockAngle.lockDefault.toString(),
         null,
         data.lockAngle,
       ),

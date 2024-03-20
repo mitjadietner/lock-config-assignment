@@ -4,10 +4,12 @@ import 'package:locks/ui/widgets/edit_dropdown.dart';
 import 'package:locks/ui/widgets/radio_list.dart';
 import 'package:locks/ui/widgets/time_input.dart';
 
+import '../../model/lock_model.dart';
+
 class EditContainer extends StatelessWidget {
   final String doorType;
-  final String defaultValue;
-  const EditContainer(this.doorType, this.defaultValue, {super.key});
+  final LockItem item;
+  const EditContainer(this.doorType, this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class EditContainer extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              child: Text('Default value: $defaultValue'),
+              child: Text('Default value: ${item.defaultValue}'),
             ),
             RadioList('No lock', ['No lock', '12V', '24V']),
             AngleSlider(),

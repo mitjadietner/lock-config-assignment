@@ -6,10 +6,11 @@ class LockItem {
   String title;
   String primary;
   String secondary;
+  String defaultValue;
   LockArray? arrayData;
   LockRange? rangeData;
-  LockItem(this.type, this.title, this.primary, this.secondary, this.arrayData,
-      this.rangeData);
+  LockItem(this.type, this.title, this.primary, this.secondary,
+      this.defaultValue, this.arrayData, this.rangeData);
 }
 
 class LockDoor {
