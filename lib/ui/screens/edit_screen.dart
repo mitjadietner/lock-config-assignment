@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
 import 'package:locks/providers/edit_provider.dart';
+import 'package:locks/providers/lock_provider.dart';
 import 'package:locks/ui/widgets/edit_buttons.dart';
 import 'package:locks/ui/widgets/edit_container.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,11 @@ class EditScreen extends StatelessWidget {
     String primary = prov.currentPrimary;
     String secondary = prov.currentSecondary;
     print("$primary $secondary");
+
+    LockItem newItem = item;
+    item.primary = primary;
+    item.secondary = secondary;
+    Provider.of<LockProvider>(context, listen: false).updateItem(newItem);
     Navigator.pop(context);
   }
 

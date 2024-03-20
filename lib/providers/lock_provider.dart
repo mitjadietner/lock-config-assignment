@@ -10,6 +10,13 @@ class LockProvider with ChangeNotifier {
 
   List<LockItem> get dataList => _lockList;
 
+  void updateItem(LockItem newItem) {
+    _allItems[_allItems
+        .indexWhere((lockItem) => lockItem.type == newItem.type)] = newItem;
+    _lockList = List.from(_allItems);
+    notifyListeners();
+  }
+
   void filterData(String q) {
     final input = q.trim().toLowerCase();
     final filtered = _allItems.where((lockItem) {
