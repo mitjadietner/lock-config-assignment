@@ -33,9 +33,7 @@ class ListItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: Text(item.type == 1
-                      ? item.arrayData!.title
-                      : item.rangeData!.title),
+                  child: Text(item.title),
                 ),
                 const Spacer(),
                 Padding(
@@ -44,22 +42,13 @@ class ListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        item.type == 1
-                            ? item.arrayData!.lockDefault
-                            : item.rangeData!.lockDefault.toString(),
+                        item.primary,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      if (item.type == 1
-                          ? item.arrayData!.common == null
-                          : item.rangeData!.common == null)
-                        const Spacer(),
-                      if (item.type == 1
-                          ? item.arrayData!.common == null
-                          : item.rangeData!.common == null)
+                      if (item.secondary.isNotEmpty) const Spacer(),
+                      if (item.secondary.isNotEmpty)
                         Text(
-                          item.type == 1
-                              ? item.arrayData!.lockDefault
-                              : item.rangeData!.lockDefault.toString(),
+                          item.secondary,
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                     ],

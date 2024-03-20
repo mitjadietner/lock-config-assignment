@@ -3,9 +3,13 @@
 
 class LockItem {
   int type;
+  String title;
+  String primary;
+  String secondary;
   LockArray? arrayData;
   LockRange? rangeData;
-  LockItem(this.type, this.arrayData, this.rangeData);
+  LockItem(this.type, this.title, this.primary, this.secondary, this.arrayData,
+      this.rangeData);
 }
 
 class LockDoor {
@@ -26,13 +30,12 @@ class LockDoor {
   });
 
   factory LockDoor.fromJson(Map<String, dynamic> json) => LockDoor(
-        lockVoltage: LockArray.fromJson(json["lockVoltage"], "Lock Voltage"),
-        lockType: LockArray.fromJson(json["lockType"], "Lock Type"),
-        lockKick: LockArray.fromJson(json["lockKick"], "Lock Kick"),
-        lockRelease: LockArray.fromJson(json["lockRelease"], "Lock Release"),
-        lockReleaseTime:
-            LockRange.fromJson(json["lockReleaseTime"], "Lock Release Time"),
-        lockAngle: LockRange.fromJson(json["lockAngle"], "Lock Angle"),
+        lockVoltage: LockArray.fromJson(json["lockVoltage"]),
+        lockType: LockArray.fromJson(json["lockType"]),
+        lockKick: LockArray.fromJson(json["lockKick"]),
+        lockRelease: LockArray.fromJson(json["lockRelease"]),
+        lockReleaseTime: LockRange.fromJson(json["lockReleaseTime"]),
+        lockAngle: LockRange.fromJson(json["lockAngle"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,23 +49,19 @@ class LockDoor {
 }
 
 class LockRange {
-  String title;
   Range range;
   String unit;
   double lockDefault;
   bool? common;
 
   LockRange({
-    required this.title,
     required this.range,
     required this.unit,
     required this.lockDefault,
     this.common,
   });
 
-  factory LockRange.fromJson(Map<String, dynamic> json, String title) =>
-      LockRange(
-        title: title,
+  factory LockRange.fromJson(Map<String, dynamic> json) => LockRange(
         range: Range.fromJson(json["range"]),
         unit: json["unit"],
         lockDefault: json["default"]?.toDouble(),
@@ -98,21 +97,17 @@ class Range {
 }
 
 class LockArray {
-  String title;
   List<String> values;
   String lockDefault;
   bool? common;
 
   LockArray({
-    required this.title,
     required this.values,
     required this.lockDefault,
     this.common,
   });
 
-  factory LockArray.fromJson(Map<String, dynamic> json, String title) =>
-      LockArray(
-        title: title,
+  factory LockArray.fromJson(Map<String, dynamic> json) => LockArray(
         values: List<String>.from(json["values"].map((x) => x)),
         lockDefault: json["default"],
         common: json["common"],

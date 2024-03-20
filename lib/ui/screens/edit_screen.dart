@@ -27,9 +27,7 @@ class EditScreen extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: Text(
-                      item.type == 1
-                          ? item.arrayData!.title
-                          : item.rangeData!.title,
+                      item.title,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
