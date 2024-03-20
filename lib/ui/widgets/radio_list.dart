@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:locks/model/lock_model.dart';
 
 class RadioList extends StatefulWidget {
-  final List<String> values;
-  final String defaultValue;
-  const RadioList(this.defaultValue, this.values, {super.key});
+  final LockItem item;
+  const RadioList(this.item, {super.key});
 
   @override
   State<RadioList> createState() => _RadioListState();

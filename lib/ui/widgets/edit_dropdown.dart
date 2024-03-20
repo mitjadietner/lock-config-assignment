@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:locks/model/lock_model.dart';
 
 class EditDropdown extends StatefulWidget {
-  final String defaultValue;
-  final List<String> options;
-  const EditDropdown(this.defaultValue, this.options, {super.key});
+  final LockItem item;
+  const EditDropdown(this.item, {super.key});
 
   @override
   State<EditDropdown> createState() => _EditDropdownState();
@@ -15,7 +15,7 @@ class _EditDropdownState extends State<EditDropdown> {
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.defaultValue;
+    dropdownValue = widget.item.defaultValue;
   }
 
   @override
@@ -39,7 +39,8 @@ class _EditDropdownState extends State<EditDropdown> {
               dropdownValue = value!;
             });
           },
-          items: widget.options.map<DropdownMenuItem<String>>((String value) {
+          items: widget.item.arrayData!.values
+              .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value),

@@ -13,7 +13,9 @@ class EditButtons extends StatelessWidget {
           OutlinedButton(
             style: const ButtonStyle(
                 fixedSize: MaterialStatePropertyAll(Size(200, 48))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             child: const Text('Cancel'),
           ),
           FilledButton.tonal(

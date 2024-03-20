@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:locks/model/lock_model.dart';
 
 class AngleSlider extends StatefulWidget {
-  const AngleSlider({super.key});
+  final LockItem item;
+  const AngleSlider(this.item, {super.key});
 
   @override
   State<AngleSlider> createState() => _AngleSliderState();

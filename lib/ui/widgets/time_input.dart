@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:locks/model/lock_model.dart';
 
 class TimeInput extends StatefulWidget {
-  final String defaultValue;
-  const TimeInput(this.defaultValue, {super.key});
+  final LockItem item;
+  const TimeInput(this.item, {super.key});
 
   @override
   State<TimeInput> createState() => _TimeInputState();
@@ -15,7 +16,7 @@ class _TimeInputState extends State<TimeInput> {
   @override
   void initState() {
     super.initState();
-    _controller.text = widget.defaultValue;
+    _controller.text = widget.item.defaultValue;
   }
 
   @override
@@ -43,7 +44,7 @@ class _TimeInputState extends State<TimeInput> {
               double value =
                   _controller.text.isEmpty ? 0 : double.parse(_controller.text);
               if (_controller.text.isEmpty) {
-                _controller.text = widget.defaultValue;
+                _controller.text = widget.item.defaultValue;
               } else if (value < 0.1) {
                 _controller.text = '0.1';
               } else if (value > 120) {
