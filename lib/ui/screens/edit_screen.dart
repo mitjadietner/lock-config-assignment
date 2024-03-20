@@ -39,7 +39,8 @@ class EditScreen extends StatelessWidget {
                     child: Text("This is a short description of a setting."),
                   ),
                 ),
-                EditContainer('Primary', item),
+                EditContainer(
+                    item.secondary.isNotEmpty ? 'Primary' : 'Common', item),
                 if (item.secondary.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 16),

@@ -76,9 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Consumer<LockProvider>(
               builder: (context, provider, child) {
                 var lockData = provider.dataList;
-                if (lockData.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
                 return ListView.builder(
                   itemBuilder: (context, index) =>
                       ListItem(item: lockData[index]),
