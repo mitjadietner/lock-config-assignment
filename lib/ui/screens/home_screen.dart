@@ -11,10 +11,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _filterController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     Provider.of<LockProvider>(context, listen: false).getData();
+  }
+
+  void filterResults(String query) {
+    Provider.of<LockProvider>(context, listen: false).filterData(query);
   }
 
   @override
@@ -29,10 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
             child: TextField(
-              decoration: InputDecoration(
+              controller: _filterController,
+              onChanged: filterResults,
+              decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   hintText: 'Search Parameter',
                   border: OutlineInputBorder()),
@@ -68,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Consumer<LockProvider>(
               builder: (context, provider, child) {
                 var lockData = provider.dataList;
-                if (lockData == null) {
+                if (lockData.isEmpty) {
                   return const Center(child: CircularProgressIndicator());
                 }
                 return ListView.builder(

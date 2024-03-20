@@ -3,15 +3,34 @@ import 'package:locks/model/lock_model.dart';
 import 'package:locks/services/api_service.dart';
 
 class LockProvider with ChangeNotifier {
-  List<LockItem>? _lockList;
+  List<LockItem> _allItems = [];
+  List<LockItem> _lockList = [];
 
   ApiService service = ApiService();
 
-  List<LockItem>? get dataList => _lockList;
+  List<LockItem> get dataList => _lockList;
 
-  getData() async {
+  void filterData(String q) {
+    final input = q.trim().toLowerCase();
+    final filtered = _allItems.where((lockItem) {
+      String title = lockItem.title.toLowerCase();
+      String primary = lockItem.primary.toLowerCase();
+      String secondary = lockItem.secondary.toLowerCase();
+      return title.contains(input) ||
+          primary.contains(input) ||
+          secondary.contains(input);
+    }).toList();
+    if (input.isEmpty) {
+      _lockList = List.from(_allItems);
+    } else {
+      _lockList = List.from(filtered);
+    }
+    notifyListeners();
+  }
+
+  void getData() async {
     LockDoor data = await service.fetchData();
-    _lockList = [
+    _allItems = [
       LockItem(
         1,
         "Lock Voltage",
@@ -91,6 +110,7 @@ class LockProvider with ChangeNotifier {
         data.lockAngle,
       ),
     ];
+    _lockList = List.from(_allItems);
     notifyListeners();
   }
 }
