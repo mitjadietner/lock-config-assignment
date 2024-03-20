@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
 
 class EditDropdown extends StatefulWidget {
+  final String doorType;
   final LockItem item;
-  const EditDropdown(this.item, {super.key});
+  const EditDropdown(this.doorType, this.item, {super.key});
 
   @override
   State<EditDropdown> createState() => _EditDropdownState();

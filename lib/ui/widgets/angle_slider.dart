@@ -13,6 +13,12 @@ class _AngleSliderState extends State<AngleSlider> {
   double _currentSliderValue = 90;
 
   @override
+  void initState() {
+    super.initState();
+    //widget.item.primary;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [

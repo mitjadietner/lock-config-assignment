@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EditButtons extends StatelessWidget {
-  const EditButtons({super.key});
+  final Function saveFunction;
+  const EditButtons(this.saveFunction, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class EditButtons extends StatelessWidget {
           FilledButton.tonal(
             style: const ButtonStyle(
                 fixedSize: MaterialStatePropertyAll(Size(200, 48))),
-            onPressed: () {},
+            onPressed: () => saveFunction(context),
             child: const Text('Save'),
           ),
         ],

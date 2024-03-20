@@ -38,7 +38,7 @@ class EditContainer extends StatelessWidget {
               RadioList(doorType, item),
             if (item.type == 6) AngleSlider(item),
             if (item.type == 5) TimeInput(item),
-            if (item.type == 3) EditDropdown(item),
+            if (item.type == 3) EditDropdown(doorType, item),
           ],
         ),
       ),

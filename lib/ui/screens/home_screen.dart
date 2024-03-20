@@ -19,6 +19,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Provider.of<LockProvider>(context, listen: false).getData();
   }
 
+  @override
+  void dispose() {
+    _filterController.dispose();
+    super.dispose();
+  }
+
   void filterResults(String query) {
     Provider.of<LockProvider>(context, listen: false).filterData(query);
   }
