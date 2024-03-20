@@ -9,11 +9,9 @@ class EditProvider extends ChangeNotifier {
 
   void setPrimaryValue(String newValue) {
     _selectedPrimary = newValue;
-    notifyListeners();
   }
 
   void setSecondaryValue(String newValue) {
     _selectedSecondary = newValue;
-    notifyListeners();
   }
 }

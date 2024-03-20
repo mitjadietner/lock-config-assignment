@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
+import 'package:locks/providers/edit_provider.dart';
+import 'package:provider/provider.dart';
 
 class EditDropdown extends StatefulWidget {
-  final String doorType;
+  final int doorType;
   final LockItem item;
   const EditDropdown(this.doorType, this.item, {super.key});
 
@@ -16,7 +18,21 @@ class _EditDropdownState extends State<EditDropdown> {
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.item.defaultValue;
+
+    if (widget.doorType == 1) {
+      dropdownValue = widget.item.primary;
+    } else {
+      dropdownValue = widget.item.secondary;
+    }
+  }
+
+  void setNewValue(String value) {
+    if (widget.doorType == 1) {
+      Provider.of<EditProvider>(context, listen: false).setPrimaryValue(value);
+    } else {
+      Provider.of<EditProvider>(context, listen: false)
+          .setSecondaryValue(value);
+    }
   }
 
   @override
@@ -35,9 +51,9 @@ class _EditDropdownState extends State<EditDropdown> {
             color: Colors.blue,
           ),
           onChanged: (String? value) {
-            // This is called when the user selects an item.
+            setNewValue(value ?? '');
             setState(() {
-              dropdownValue = value!;
+              dropdownValue = value ?? '';
             });
           },
           items: widget.item.arrayData!.values

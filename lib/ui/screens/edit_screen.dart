@@ -11,15 +11,15 @@ class EditScreen extends StatelessWidget {
   const EditScreen(this.item, {super.key});
 
   void onSaveButtonClicked(BuildContext context) {
-    print('save clicked');
+    // Get latest primary and secondary values.
     final prov = Provider.of<EditProvider>(context, listen: false);
     String primary = prov.currentPrimary;
     String secondary = prov.currentSecondary;
-    print("$primary $secondary");
 
+    // Set the new item and update it in the list.
     LockItem newItem = item;
-    item.primary = primary;
-    item.secondary = secondary;
+    if (primary.isNotEmpty) item.primary = primary;
+    if (secondary.isNotEmpty) item.secondary = secondary;
     Provider.of<LockProvider>(context, listen: false).updateItem(newItem);
     Navigator.pop(context);
   }

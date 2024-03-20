@@ -35,10 +35,17 @@ class EditContainer extends StatelessWidget {
               child: Text('Default value: ${item.defaultValue}'),
             ),
             if (item.type == 1 || item.type == 2 || item.type == 4)
-              RadioList(doorType, item),
-            if (item.type == 6) AngleSlider(item),
-            if (item.type == 5) TimeInput(item),
-            if (item.type == 3) EditDropdown(doorType, item),
+              RadioList(
+                  doorType == "Primary" || doorType == "Common" ? 1 : 2, item),
+            if (item.type == 6)
+              AngleSlider(
+                  doorType == "Primary" || doorType == "Common" ? 1 : 2, item),
+            if (item.type == 5)
+              TimeInput(
+                  doorType == "Primary" || doorType == "Common" ? 1 : 2, item),
+            if (item.type == 3)
+              EditDropdown(
+                  doorType == "Primary" || doorType == "Common" ? 1 : 2, item),
           ],
         ),
       ),

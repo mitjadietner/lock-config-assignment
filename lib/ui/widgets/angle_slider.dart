@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
+import 'package:locks/providers/edit_provider.dart';
+import 'package:provider/provider.dart';
 
 class AngleSlider extends StatefulWidget {
+  final int doorType;
   final LockItem item;
-  const AngleSlider(this.item, {super.key});
+  const AngleSlider(this.doorType, this.item, {super.key});
 
   @override
   State<AngleSlider> createState() => _AngleSliderState();
 }
 
 class _AngleSliderState extends State<AngleSlider> {
-  double _currentSliderValue = 90;
+  late double _currentSliderValue;
 
   @override
   void initState() {
     super.initState();
-    //widget.item.primary;
+
+    if (widget.doorType == 1) {
+      _currentSliderValue = double.tryParse(widget.item.primary) ?? 90;
+    } else {
+      _currentSliderValue = double.tryParse(widget.item.secondary) ?? 90;
+    }
   }
 
   @override
@@ -26,7 +34,7 @@ class _AngleSliderState extends State<AngleSlider> {
           width: double.infinity,
           child: Text(
             'Selected angle: $_currentSliderValue°',
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
         Slider(
@@ -35,6 +43,13 @@ class _AngleSliderState extends State<AngleSlider> {
           max: 125,
           divisions: 12,
           onChanged: (value) {
+            if (widget.doorType == 1) {
+              Provider.of<EditProvider>(context, listen: false)
+                  .setPrimaryValue(value.toString());
+            } else {
+              Provider.of<EditProvider>(context, listen: false)
+                  .setSecondaryValue(value.toString());
+            }
             setState(
               () {
                 _currentSliderValue = value;

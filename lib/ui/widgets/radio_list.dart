@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
+import 'package:locks/providers/edit_provider.dart';
+import 'package:provider/provider.dart';
 
 class RadioList extends StatefulWidget {
-  final String doorType;
+  final int doorType;
   final LockItem item;
   const RadioList(this.doorType, this.item, {super.key});
 
@@ -18,7 +20,7 @@ class _RadioListState extends State<RadioList> {
   void initState() {
     super.initState();
     String selected;
-    if (widget.doorType == "Primary" || widget.doorType == "Common") {
+    if (widget.doorType == 1) {
       selected = widget.item.primary;
     } else {
       selected = widget.item.secondary;
@@ -27,6 +29,19 @@ class _RadioListState extends State<RadioList> {
     _selectedIndex = values.indexWhere((value) {
       return value == selected;
     });
+  }
+
+  void setNewValue(int index) {
+    if (values.isEmpty || index >= values.length) return;
+    String newValue = values[index];
+
+    if (widget.doorType == 1) {
+      Provider.of<EditProvider>(context, listen: false)
+          .setPrimaryValue(newValue);
+    } else {
+      Provider.of<EditProvider>(context, listen: false)
+          .setSecondaryValue(newValue);
+    }
   }
 
   @override
@@ -40,8 +55,9 @@ class _RadioListState extends State<RadioList> {
             value: index,
             groupValue: _selectedIndex,
             onChanged: (value) {
+              setNewValue(value ?? 0);
               setState(() {
-                _selectedIndex = value!;
+                _selectedIndex = value ?? 0;
               });
             },
           );
