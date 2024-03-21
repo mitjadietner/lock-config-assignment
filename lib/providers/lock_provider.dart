@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:locks/model/lock_model.dart';
+import 'package:locks/repository/locks_repository.dart';
 import 'package:locks/services/api_service.dart';
 
 class LockProvider with ChangeNotifier {
   List<LockItem> _allItems = [];
   List<LockItem> _lockList = [];
 
+  final LocksRepository _locksRepository = LocksRepository();
   ApiService service = ApiService();
 
   List<LockItem> get dataList => _lockList;
@@ -14,6 +16,7 @@ class LockProvider with ChangeNotifier {
     _allItems[_allItems
         .indexWhere((lockItem) => lockItem.type == newItem.type)] = newItem;
     _lockList = List.from(_allItems);
+    _locksRepository.updateItem(newItem);
     notifyListeners();
   }
 
@@ -36,6 +39,15 @@ class LockProvider with ChangeNotifier {
   }
 
   void getData() async {
+    List<LockItem> storedItems = await _locksRepository.getStoredItems();
+    // use stored data if exists
+    if (storedItems.isNotEmpty) {
+      _allItems = List.from(storedItems);
+      _lockList = List.from(storedItems);
+      notifyListeners();
+      return;
+    }
+    // fetch data
     LockDoor data = await service.fetchData();
     _allItems = [
       LockItem(
@@ -48,8 +60,8 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockVoltage.lockDefault,
         data.lockVoltage.lockDefault,
-        data.lockVoltage,
-        null,
+        //data.lockVoltage,
+        //null,
       ),
       LockItem(
         2,
@@ -61,8 +73,8 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockType.lockDefault,
         data.lockType.lockDefault,
-        data.lockType,
-        null,
+        //data.lockType,
+        //null,
       ),
       LockItem(
         3,
@@ -74,8 +86,8 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockKick.lockDefault,
         data.lockKick.lockDefault,
-        data.lockKick,
-        null,
+        //data.lockKick,
+        //null,
       ),
       LockItem(
         4,
@@ -87,8 +99,8 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockRelease.lockDefault,
         data.lockRelease.lockDefault,
-        data.lockRelease,
-        null,
+        //data.lockRelease,
+        //null,
       ),
       LockItem(
         5,
@@ -100,8 +112,8 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockReleaseTime.lockDefault.toString(),
         data.lockReleaseTime.lockDefault.toString(),
-        null,
-        data.lockReleaseTime,
+        //null,
+        //data.lockReleaseTime,
       ),
       LockItem(
         6,
@@ -113,11 +125,12 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockAngle.lockDefault.toString(),
         data.lockAngle.lockDefault.toString(),
-        null,
-        data.lockAngle,
+        //null,
+        //data.lockAngle,
       ),
     ];
     _lockList = List.from(_allItems);
+    _locksRepository.insertItems(_allItems);
     notifyListeners();
   }
 }

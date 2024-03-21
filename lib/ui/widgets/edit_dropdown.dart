@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locks/config_helper.dart';
 import 'package:locks/model/lock_model.dart';
 import 'package:locks/providers/edit_provider.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +57,8 @@ class _EditDropdownState extends State<EditDropdown> {
               dropdownValue = value ?? '';
             });
           },
-          items: widget.item.arrayData!.values
+          items: ConfigHelper()
+              .getKickValues()
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

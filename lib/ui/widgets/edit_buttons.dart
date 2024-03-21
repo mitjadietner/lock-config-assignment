@@ -13,7 +13,7 @@ class EditButtons extends StatelessWidget {
         children: [
           OutlinedButton(
             style: const ButtonStyle(
-                fixedSize: MaterialStatePropertyAll(Size(200, 48))),
+                fixedSize: MaterialStatePropertyAll(Size(180, 48))),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -21,7 +21,7 @@ class EditButtons extends StatelessWidget {
           ),
           FilledButton.tonal(
             style: const ButtonStyle(
-                fixedSize: MaterialStatePropertyAll(Size(200, 48))),
+                fixedSize: MaterialStatePropertyAll(Size(180, 48))),
             onPressed: () => saveFunction(context),
             child: const Text('Save'),
           ),

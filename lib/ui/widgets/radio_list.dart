@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locks/config_helper.dart';
 import 'package:locks/model/lock_model.dart';
 import 'package:locks/providers/edit_provider.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class _RadioListState extends State<RadioList> {
     } else {
       selected = widget.item.secondary;
     }
-    values = widget.item.arrayData!.values;
+    values = ConfigHelper().getRadioValuesFor(widget.item.type);
     _selectedIndex = values.indexWhere((value) {
       return value == selected;
     });

@@ -7,10 +7,28 @@ class LockItem {
   String primary;
   String secondary;
   String defaultValue;
-  LockArray? arrayData;
-  LockRange? rangeData;
+  //LockArray? arrayData;
+  //LockRange? rangeData;
   LockItem(this.type, this.title, this.primary, this.secondary,
-      this.defaultValue, this.arrayData, this.rangeData);
+      this.defaultValue); // this.arrayData, this.rangeData);
+
+  factory LockItem.fromMap(Map<String, dynamic> json) => LockItem(
+        json['type'],
+        json['title'],
+        json['primaryValue'].toString(),
+        json['secondaryValue'].toString(),
+        json['defaultValue'].toString(),
+      );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'type': type,
+      'title': title,
+      'primaryValue': primary,
+      'secondaryValue': secondary,
+      'defaultValue': defaultValue,
+    };
+  }
 }
 
 class LockDoor {
