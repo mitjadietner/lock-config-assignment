@@ -73,16 +73,15 @@ class _TimeInputState extends State<TimeInput> {
             onTap: () => _controller.clear(),
             onTapOutside: (event) => checkInput(false),
             onChanged: (value) => checkInput(true),
-            onEditingComplete: () => checkInput(false),
+            onEditingComplete: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              checkInput(false);
+            },
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,1}')),
             ],
           ),
-        ),
-        const Text(
-          ' s (between 0.1 and 120 s)',
-          style: TextStyle(fontSize: 16),
         ),
       ],
     );

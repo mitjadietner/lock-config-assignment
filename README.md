@@ -1,4 +1,4 @@
-# Assignment: Mobille App Coding Challenge: Lock Settings Configuration
+# Assignment: Mobile App Coding Challenge: Lock Settings Configuration
 
 Mobile development framework used for this challenge is Flutter. All the code written by me is located in the lib directory of a project.
 

@@ -42,13 +42,13 @@ class ListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        item.primary,
+                        item.primary + item.getUnit(),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       if (item.secondary.isNotEmpty) const Spacer(),
                       if (item.secondary.isNotEmpty)
                         Text(
-                          item.secondary,
+                          item.secondary + item.getUnit(),
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                     ],

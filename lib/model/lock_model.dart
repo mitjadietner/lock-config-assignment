@@ -24,6 +24,15 @@ class LockItem {
       'defaultValue': defaultValue,
     };
   }
+
+  String getUnit() {
+    if (type == 5) {
+      return ' s';
+    } else if (type == 6) {
+      return '°';
+    }
+    return '';
+  }
 }
 
 class LockDoor {

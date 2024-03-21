@@ -32,7 +32,8 @@ class EditContainer extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              child: Text('Default value: ${item.defaultValue}'),
+              child:
+                  Text('Default value: ${item.defaultValue}${item.getUnit()}'),
             ),
             if (item.type == 1 || item.type == 2 || item.type == 4)
               RadioList(

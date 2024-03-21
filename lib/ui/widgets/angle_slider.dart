@@ -33,7 +33,7 @@ class _AngleSliderState extends State<AngleSlider> {
         SizedBox(
           width: double.infinity,
           child: Text(
-            'Selected angle: $_currentSliderValue°',
+            'Selected angle: ${_currentSliderValue.toInt()}°',
             style: const TextStyle(fontSize: 16),
           ),
         ),
@@ -45,10 +45,10 @@ class _AngleSliderState extends State<AngleSlider> {
           onChanged: (value) {
             if (widget.doorType == 1) {
               Provider.of<EditProvider>(context, listen: false)
-                  .setPrimaryValue(value.toString());
+                  .setPrimaryValue(value.toInt().toString());
             } else {
               Provider.of<EditProvider>(context, listen: false)
-                  .setSecondaryValue(value.toString());
+                  .setSecondaryValue(value.toInt().toString());
             }
             setState(
               () {
