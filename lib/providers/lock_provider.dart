@@ -12,6 +12,7 @@ class LockProvider with ChangeNotifier {
 
   List<LockItem> get dataList => _lockList;
 
+  // update the item and store the change in the database
   void updateItem(LockItem newItem) {
     _allItems[_allItems
         .indexWhere((lockItem) => lockItem.type == newItem.type)] = newItem;
@@ -20,6 +21,7 @@ class LockProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // filter and update the list using query from text field
   void filterData(String q) {
     final input = q.trim().toLowerCase();
     final filtered = _allItems.where((lockItem) {
@@ -38,6 +40,7 @@ class LockProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // get data from database or fetch it from API
   void getData() async {
     List<LockItem> storedItems = await _locksRepository.getStoredItems();
     // use stored data if exists
@@ -60,8 +63,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockVoltage.lockDefault,
         data.lockVoltage.lockDefault,
-        //data.lockVoltage,
-        //null,
       ),
       LockItem(
         2,
@@ -73,8 +74,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockType.lockDefault,
         data.lockType.lockDefault,
-        //data.lockType,
-        //null,
       ),
       LockItem(
         3,
@@ -86,8 +85,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockKick.lockDefault,
         data.lockKick.lockDefault,
-        //data.lockKick,
-        //null,
       ),
       LockItem(
         4,
@@ -99,8 +96,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockRelease.lockDefault,
         data.lockRelease.lockDefault,
-        //data.lockRelease,
-        //null,
       ),
       LockItem(
         5,
@@ -112,8 +107,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockReleaseTime.lockDefault.toString(),
         data.lockReleaseTime.lockDefault.toString(),
-        //null,
-        //data.lockReleaseTime,
       ),
       LockItem(
         6,
@@ -125,8 +118,6 @@ class LockProvider with ChangeNotifier {
                 ? ""
                 : data.lockAngle.lockDefault.toString(),
         data.lockAngle.lockDefault.toString(),
-        //null,
-        //data.lockAngle,
       ),
     ];
     _lockList = List.from(_allItems);

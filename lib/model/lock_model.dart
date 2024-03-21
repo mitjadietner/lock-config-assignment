@@ -1,16 +1,11 @@
-// LockDoor dataFromJson(String str) => LockDoor.fromJson(json.decode(str));
-// String dataToJson(LockDoor data) => json.encode(data.toJson());
-
 class LockItem {
   int type;
   String title;
   String primary;
   String secondary;
   String defaultValue;
-  //LockArray? arrayData;
-  //LockRange? rangeData;
-  LockItem(this.type, this.title, this.primary, this.secondary,
-      this.defaultValue); // this.arrayData, this.rangeData);
+  LockItem(
+      this.type, this.title, this.primary, this.secondary, this.defaultValue);
 
   factory LockItem.fromMap(Map<String, dynamic> json) => LockItem(
         json['type'],
